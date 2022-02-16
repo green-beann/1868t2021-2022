@@ -119,6 +119,8 @@ void usercontrol(void) { // drive control
 // Main will set up the competition functions and callbacks.
 //
 int main() {
+  //HIIIIIIIIIIIIIIIIIII
+  //weewoo
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
