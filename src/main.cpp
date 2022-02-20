@@ -1,9 +1,69 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// ClawMotors           motor_group   15, 10          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// ClawMotors           motor_group   15, 10          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// MotorGroup15         motor_group   15, 10          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// MotorGroup15         motor_group   15, 16          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Claw                 motor         15              
+// Intakes              motor_group   20, 12          
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
 /*    Author:       VEX                                                       */
 /*    Created:      Thu Sep 26 2019                                           */
 /*    Description:  Competition Template                                      */
+/*    Robot name:   Bellicostic Belligerence                                  */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
@@ -80,35 +140,37 @@ void usercontrol(void) { // drive control
 
     double leftSpeed = Controller1.Axis3.value(); //defines the axis for the left side of the chassis
     double rightSpeed = Controller1.Axis2.value(); //defines the axis for the right side of the chasssis
+    double clawSpeed = Controller2.Axis2.value();
  
     
     LeftMotor.spin(forward, leftSpeed, pct); //left side
     RightMotor.spin(forward, rightSpeed, pct); //right side
+    ClawMotors.spin(forward, clawSpeed, pct);
 
 
     if (Controller2.ButtonUp.pressing()) {
       //moves the intake rollers so they intake cubes
-      Intakes.spin(forward, 80, pct);
+      Intakes.spin(forward, 55, pct);
  
     } else if (Controller2.ButtonDown.pressing()) {
       //moves the intake rollers so they outtake cubes
-      Intakes.spin(reverse, 80, pct);
+      Intakes.spin(reverse, 55, pct);
       
     } else {
       //keeps the motors from moving when the buttons are not pressed
       Intakes.stop();
 
     }
-
+/*
     if (Controller2.ButtonR1.pressing()) {
-      Claw.spin(forward, 80, pct);
+      ClawMotors.spin(forward, 80, pct);
     }
     else if (Controller2.ButtonR2.pressing()) {
-      Claw.spin(reverse, 80, pct);
+      ClawMotors.spin(reverse, 80, pct);
     } else {
-      Claw.stop();
+      ClawMotors.stop();
     }
-
+*/
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
@@ -122,7 +184,7 @@ int main() {
   //HIIIIIIIIIIIIIIIIIII
   //weewoo
   // Set up callbacks for autonomous and driver control periods.
-  Competition.autonomous(autonomous);
+  //Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
