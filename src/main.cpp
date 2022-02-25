@@ -6,6 +6,16 @@
 // LeftMotor            motor         11              
 // RightMotor           motor         18              
 // Intakes              motor_group   20, 12          
+// ClawMotors           motor_group   15, 16          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
 // ClawMotors           motor_group   15, 10          
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
@@ -131,13 +141,21 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+/*void thing() {
+  ClawMotors.spinFor(forward, 45, degrees);
+}
+
+void thing2() {
+  ClawMotors.spinFor(reverse, 45, degrees);
+}
+*/
 void usercontrol(void) { // drive control
   // User control code here, inside the loop
   while (1) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
-
+  
     double leftSpeed = Controller1.Axis3.value(); //defines the axis for the left side of the chassis
     double rightSpeed = Controller1.Axis2.value(); //defines the axis for the right side of the chasssis
     double clawSpeed = Controller2.Axis2.value();
@@ -162,7 +180,7 @@ void usercontrol(void) { // drive control
 
     }
 /*
-    if (Controller2.ButtonR1.pressing()) {
+    if (Controller2.ButtonR1.pressed(thing)) {
       ClawMotors.spin(forward, 80, pct);
     }
     else if (Controller2.ButtonR2.pressing()) {
@@ -171,6 +189,8 @@ void usercontrol(void) { // drive control
       ClawMotors.stop();
     }
 */
+    //Controller2.ButtonR1.pressed(thing);
+    //Controller2.ButtonR2.pressed(thing2);
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
@@ -195,3 +215,4 @@ int main() {
   }
 
 }
+
