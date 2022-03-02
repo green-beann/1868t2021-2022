@@ -5,6 +5,60 @@
 // Controller2          controller                    
 // LeftMotor            motor         11              
 // RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// LimitSwitch          limit         B               
+// Intake               motor         20              
+// Conveyor             motor         12              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// LimitSwitch          limit         B               
+// Intake               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// LimitSwitch          limit         B               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// ClawMotors           motor_group   15, 16          
+// LimitSwitch          limit         B               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// Intakes              motor_group   20, 12          
+// ClawMotors           motor_group   15, 16          
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
 // Intakes              motor_group   20, 12          
 // ClawMotors           motor_group   15, 16          
 // ---- END VEXCODE CONFIGURED DEVICES ----
@@ -149,6 +203,11 @@ void thing2() {
   ClawMotors.spinFor(reverse, 45, degrees);
 }
 */
+
+void whenLimitSwitchPressed() {
+  ClawMotors.stop();
+}
+
 void usercontrol(void) { // drive control
   // User control code here, inside the loop
   while (1) {
@@ -168,27 +227,34 @@ void usercontrol(void) { // drive control
 
     if (Controller2.ButtonUp.pressing()) {
       //moves the intake rollers so they intake cubes
-      Intakes.spin(forward, 55, pct);
+      Intake.spin(forward, 55, pct);
+      Conveyor.spin(forward, 55, pct);
  
     } else if (Controller2.ButtonDown.pressing()) {
       //moves the intake rollers so they outtake cubes
-      Intakes.spin(reverse, 55, pct);
+      Intake.spin(reverse, 55, pct);
+      Conveyor.spin(reverse, 55, pct);
       
     } else {
       //keeps the motors from moving when the buttons are not pressed
-      Intakes.stop();
-
+      Intake.stop();
+      Conveyor.stop();
     }
-/*
-    if (Controller2.ButtonR1.pressed(thing)) {
-      ClawMotors.spin(forward, 80, pct);
+    if (Controller2.ButtonR1.pressing()) {
+      if (LimitSwitch.pressing()) {
+        ClawMotors.stop();
+      }
+      else {
+        ClawMotors.spin(forward, 80, pct);
+      }
+      //LimitSwitch.pressed(whenLimitSwitchPressed);
     }
     else if (Controller2.ButtonR2.pressing()) {
       ClawMotors.spin(reverse, 80, pct);
     } else {
       ClawMotors.stop();
     }
-*/
+
     //Controller2.ButtonR1.pressed(thing);
     //Controller2.ButtonR2.pressed(thing2);
 
