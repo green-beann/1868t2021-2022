@@ -9,6 +9,32 @@
 // LimitSwitch          limit         B               
 // Intake               motor         20              
 // Conveyor             motor         12              
+// BumperSwitch         bumper        A               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// LimitSwitch          limit         B               
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperA              bumper        A               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// LimitSwitch          limit         B               
+// Intake               motor         20              
+// Conveyor             motor         12              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
@@ -204,7 +230,7 @@ void thing2() {
 }
 */
 
-void whenLimitSwitchPressed() {
+void whenBumperSwitchPressed() {
   ClawMotors.stop();
 }
 
@@ -241,16 +267,16 @@ void usercontrol(void) { // drive control
       Conveyor.stop();
     }
     if (Controller2.ButtonR1.pressing()) {
-      if (LimitSwitch.pressing()) {
-        ClawMotors.stop();
+      if (BumperSwitch.pressing()) {
+        ClawMotors.spin(forward, 0.99, pct);
       }
       else {
-        ClawMotors.spin(forward, 80, pct);
+        ClawMotors.spin(forward, 50, pct);
       }
       //LimitSwitch.pressed(whenLimitSwitchPressed);
     }
     else if (Controller2.ButtonR2.pressing()) {
-      ClawMotors.spin(reverse, 80, pct);
+      ClawMotors.spin(reverse, 50, pct);
     } else {
       ClawMotors.stop();
     }
