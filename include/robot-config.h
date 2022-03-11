@@ -8,7 +8,6 @@ extern controller Controller2;
 extern motor LeftMotor;
 extern motor RightMotor;
 extern motor_group ClawMotors;
-extern limit LimitSwitch;
 extern motor Intake;
 extern motor Conveyor;
 extern bumper BumperSwitch;

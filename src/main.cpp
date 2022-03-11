@@ -6,6 +6,30 @@
 // LeftMotor            motor         11              
 // RightMotor           motor         18              
 // ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        A               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
 // LimitSwitch          limit         B               
 // Intake               motor         20              
 // Conveyor             motor         12              
@@ -250,25 +274,32 @@ void usercontrol(void) { // drive control
     RightMotor.spin(forward, rightSpeed, pct); //right side
     ClawMotors.spin(forward, clawSpeed, pct);
 
-
     if (Controller2.ButtonUp.pressing()) {
       //moves the intake rollers so they intake cubes
-      Intake.spin(forward, 55, pct);
-      Conveyor.spin(forward, 55, pct);
- 
+      Conveyor.spin(forward, 50, pct);
     } else if (Controller2.ButtonDown.pressing()) {
       //moves the intake rollers so they outtake cubes
-      Intake.spin(reverse, 55, pct);
-      Conveyor.spin(reverse, 55, pct);
-      
+      Conveyor.spin(reverse, 50, pct);
+    } else {
+      Conveyor.stop();
+    }
+
+    if (Controller2.ButtonX.pressing()) {
+      //Brain.Screen.print("the intake should be spinning");
+      //moves the intake rollers so they intake cubes
+      Intake.spin(forward, 40, pct);
+    } else if (Controller2.ButtonB.pressing()) {
+      //moves the intake rollers so they outtake cubes
+      Intake.spin(reverse, 40, pct);
     } else {
       //keeps the motors from moving when the buttons are not pressed
       Intake.stop();
-      Conveyor.stop();
     }
+
     if (Controller2.ButtonR1.pressing()) {
       if (BumperSwitch.pressing()) {
-        ClawMotors.spin(forward, 0.99, pct);
+        Brain.Screen.print("hi there");
+        ClawMotors.spin(forward, 1, pct);
       }
       else {
         ClawMotors.spin(forward, 50, pct);
