@@ -11,6 +11,8 @@ extern motor_group ClawMotors;
 extern motor Intake;
 extern motor Conveyor;
 extern bumper BumperSwitch;
+extern motor TopIntake;
+extern motor armMotor;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

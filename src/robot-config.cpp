@@ -18,6 +18,8 @@ motor_group ClawMotors = motor_group(ClawMotorsMotorA, ClawMotorsMotorB);
 motor Intake = motor(PORT20, ratio18_1, false);
 motor Conveyor = motor(PORT12, ratio18_1, false);
 bumper BumperSwitch = bumper(Brain.ThreeWirePort.B);
+motor TopIntake = motor(PORT17, ratio18_1, false);
+motor armMotor = motor(PORT14, ratio18_1, false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

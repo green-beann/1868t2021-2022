@@ -9,6 +9,86 @@
 // Intake               motor         20              
 // Conveyor             motor         12              
 // BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// armMotor             motor         14              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// armMotor             motor         19              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        A               
+// TopIntake            motor         17              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         11              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
@@ -288,12 +368,15 @@ void usercontrol(void) { // drive control
       //Brain.Screen.print("the intake should be spinning");
       //moves the intake rollers so they intake cubes
       Intake.spin(forward, 40, pct);
+      TopIntake.spin(forward, 40, pct);
     } else if (Controller2.ButtonB.pressing()) {
       //moves the intake rollers so they outtake cubes
       Intake.spin(reverse, 40, pct);
+      TopIntake.spin(reverse, 40, pct);
     } else {
       //keeps the motors from moving when the buttons are not pressed
       Intake.stop();
+      TopIntake.stop();
     }
 
     if (Controller2.ButtonR1.pressing()) {
@@ -302,15 +385,27 @@ void usercontrol(void) { // drive control
         ClawMotors.spin(forward, 1, pct);
       }
       else {
-        ClawMotors.spin(forward, 50, pct);
+        ClawMotors.spin(forward, 30, pct);
       }
       //LimitSwitch.pressed(whenLimitSwitchPressed);
     }
     else if (Controller2.ButtonR2.pressing()) {
-      ClawMotors.spin(reverse, 50, pct);
+      ClawMotors.spin(reverse, 20, pct);
     } else {
       ClawMotors.stop();
     }
+
+    if (Controller2.ButtonL1.pressing()) {
+      
+        armMotor.spin(forward, 25, pct);
+      //LimitSwitch.pressed(whenLimitSwitchPressed);
+    }
+    else if (Controller2.ButtonR2.pressing()) {
+      armMotor.spin(reverse, 15, pct);
+    } else {
+      armMotor.stop();
+    }
+
 
     //Controller2.ButtonR1.pressed(thing);
     //Controller2.ButtonR2.pressed(thing2);
@@ -338,4 +433,3 @@ int main() {
   }
 
 }
-
