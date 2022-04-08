@@ -451,16 +451,24 @@ void usercontrol(void) { // drive control
       ClawMotors.stop();
     }
 
-    if (Controller1.ButtonL1.pressing()) { // should put onto ground and hold (automaticalfjdsfdifjdsk)
+    if (Controller1.ButtonL2.pressing()) { // put thing on goal wooo
       
         //armMotor.spin(forward, 5, pct);
       //LimitSwitch.pressed(whenLimitSwitchPressed);
-      armMotor.rotateTo(70, degrees);
+      armMotor.rotateTo(-70, degrees);
       armMotor.setBrake(hold);
     }
-    else if (Controller1.ButtonL2.pressing()) { // should hold at an angle to deposit onto branch
+    else if (Controller1.ButtonR1.pressing()) { // snatch goal!!
       //armMotor.spin(reverse, 5, pct);
-      armMotor.rotateTo(100, degrees);
+      armMotor.rotateTo(-90, degrees);
+      armMotor.setBrake(hold);
+    } 
+    else if (Controller1.ButtonR2.pressing()) { //snatched goal
+      armMotor.rotateTo(-80, degrees);
+      armMotor.setBrake(hold);
+    }
+    else if (Controller1.ButtonL1.pressing()) { //"default" postioitnn
+      armMotor.rotateTo(-160, degrees);
       armMotor.setBrake(hold);
     } else {
       armMotor.stop();
