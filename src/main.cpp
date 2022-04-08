@@ -3,6 +3,62 @@
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
 // Controller2          controller                    
+// LeftMotor            motor         10              
+// RightMotor           motor         3               
+// ClawMotors           motor_group   15, 1           
+// BottomIntake         motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// armMotor             motor         14              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         10              
+// RightMotor           motor         3               
+// ClawMotors           motor_group   15, 1           
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// armMotor             motor         14              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         10              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 1           
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// armMotor             motor         14              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
+// LeftMotor            motor         10              
+// RightMotor           motor         18              
+// ClawMotors           motor_group   15, 16          
+// Intake               motor         20              
+// Conveyor             motor         12              
+// BumperSwitch         bumper        B               
+// TopIntake            motor         17              
+// armMotor             motor         14              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Controller2          controller                    
 // LeftMotor            motor         11              
 // RightMotor           motor         18              
 // ClawMotors           motor_group   15, 16          
@@ -367,15 +423,15 @@ void usercontrol(void) { // drive control
     if (Controller2.ButtonX.pressing()) {
       //Brain.Screen.print("the intake should be spinning");
       //moves the intake rollers so they intake cubes
-      Intake.spin(forward, 40, pct);
+      BottomIntake.spin(forward, 40, pct);
       TopIntake.spin(forward, 40, pct);
     } else if (Controller2.ButtonB.pressing()) {
       //moves the intake rollers so they outtake cubes
-      Intake.spin(reverse, 40, pct);
+      BottomIntake.spin(reverse, 40, pct);
       TopIntake.spin(reverse, 40, pct);
     } else {
       //keeps the motors from moving when the buttons are not pressed
-      Intake.stop();
+      BottomIntake.stop();
       TopIntake.stop();
     }
 
@@ -395,13 +451,17 @@ void usercontrol(void) { // drive control
       ClawMotors.stop();
     }
 
-    if (Controller2.ButtonL1.pressing()) {
+    if (Controller1.ButtonL1.pressing()) { // should put onto ground and hold (automaticalfjdsfdifjdsk)
       
-        armMotor.spin(forward, 25, pct);
+        //armMotor.spin(forward, 5, pct);
       //LimitSwitch.pressed(whenLimitSwitchPressed);
+      armMotor.rotateTo(70, degrees);
+      armMotor.setBrake(hold);
     }
-    else if (Controller2.ButtonR2.pressing()) {
-      armMotor.spin(reverse, 15, pct);
+    else if (Controller1.ButtonL2.pressing()) { // should hold at an angle to deposit onto branch
+      //armMotor.spin(reverse, 5, pct);
+      armMotor.rotateTo(100, degrees);
+      armMotor.setBrake(hold);
     } else {
       armMotor.stop();
     }
